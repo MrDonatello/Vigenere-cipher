@@ -49,7 +49,7 @@ public class Controller {
             }
         });
 
-        decrypt.setOnAction(event -> {
+        decrypt.setOnAction(event ->  {
             StringBuilder decode = new StringBuilder();
             message = text.getText();
             keyString = key.getText();
