@@ -49,7 +49,7 @@ public class Controller {
             }
         });
 
-        decrypt.setOnAction(event ->  {
+        decrypt.setOnAction(event -> {
             StringBuilder decode = new StringBuilder();
             message = text.getText();
             keyString = keyField.getText();
@@ -73,13 +73,13 @@ public class Controller {
     void open() {
         FileChooser fileChooser = new FileChooser();
         File fileSelected = fileChooser.showOpenDialog(null);
-            StringBuilder text1 = new StringBuilder();
-            try {
-                BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(fileSelected),"Cp1251"));
-                String line;
-                while ((line = br.readLine()) != null) {
-                    text1.append(line);
-                }
+        StringBuilder text1 = new StringBuilder();
+        try {
+            BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(fileSelected), "Cp1251"));
+            String line;
+            while ((line = br.readLine()) != null) {
+                text1.append(line);
+            }
             br.close();
             text.setText(text1.toString());
         } catch (IOException e) {
