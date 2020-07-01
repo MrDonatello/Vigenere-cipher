@@ -26,21 +26,21 @@ public class Controller {
     private Button decrypt;
 
     @FXML
-    private TextField key;
+    private TextField keyField;
 
     @FXML
     void initialize() {
         encrypt.setOnAction(event -> {
             StringBuilder encode = new StringBuilder();
             message = text.getText();
-            keyString = key.getText();
+            keyString = keyField.getText();
             index = 0;
             if (keyString.length() != 0) {
                 for (char symbol : message.toCharArray()) {
                     if (index == keyString.toCharArray().length) {
                         index = 0;
                     }
-                    encode.append(alphabet.charAt((alphabet.indexOf(symbol) + alphabet.indexOf(keyString.charAt(index))) % 160));//160 кол-во букв в моем алфавите
+                    encode.append(alphabet.charAt((alphabet.indexOf(symbol) + alphabet.indexOf(keyString.charAt(index))) % alphabet.length()));
                     index++;
                 }
                 text.setText(encode.toString());
@@ -52,14 +52,14 @@ public class Controller {
         decrypt.setOnAction(event ->  {
             StringBuilder decode = new StringBuilder();
             message = text.getText();
-            keyString = key.getText();
+            keyString = keyField.getText();
             index = 0;
             if (keyString.length() != 0) {
                 for (char symbol : message.toCharArray()) {
                     if (index == keyString.toCharArray().length) {
                         index = 0;
                     }
-                    decode.append(alphabet.charAt(((alphabet.indexOf(symbol) + 160) - alphabet.indexOf(keyString.charAt(index))) % 160));
+                    decode.append(alphabet.charAt(((alphabet.indexOf(symbol) + 160) - alphabet.indexOf(keyString.charAt(index))) % alphabet.length()));
                     index++;
                 }
                 text.setText(decode.toString());
